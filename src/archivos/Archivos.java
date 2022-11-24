@@ -13,17 +13,57 @@ import java.io.PrintWriter;
  */
 public class Archivos {
 //leer archivos de texto
+    
+     public static void leerArchivo() {
+        File archivo = null;
+        FileReader fReader = null;
+        BufferedReader bf = null;
+        
+        try {
+            // apuntador al archivo físico
+            archivo = new File("C:\\Users\\pamel\\OneDrive\\Documentos\\Songs.txt" );
+            
+            // Abrimos el archivo para lectura
+            fReader = new FileReader ( archivo );
+            
+            // Configurar Bufer Reader para hacer la lectura
+            bf = new BufferedReader ( fReader );
+            
+            // Lectura del contenido del archivo
+            String linea;
+            
+            // Mientras haya información en el archivo
+            while ( (linea = bf.readLine()) != null )
+                System.out.println(linea);
+                
+        } catch (Exception e) {
+            System.out.println("No se encuentra el archivo");
+            e.printStackTrace();
+        } finally {
+            // Este bloque se ejecuta siempre
+            // Se cierra el archivo
+            try {
+                // Si se logró abrir el archivo, debemos cerrarlo
+                if ( null != fReader ) {
+                    fReader.close();
+                }
+            } catch( Exception e2 ) {
+                System.out.println("Error al cerrar el archivo");
+                e2.printStackTrace();
+            }
+        }
+            
+    }
+    
    
-    public static void leerArchivo(String name){
-       
-   public static void escribirArchivo(String name){
-   FileWriter archivo = null; // Especificando que trabajaremos con un archivo
+    public static void escribirArchivo(String name){
+       FileWriter archivo = null; // Especificando que trabajaremos con un archivo
         PrintWriter pw = null; // Se especifica que se trabaja con la clase PrintWriter
         BufferedReader bf = new BufferedReader(new InputStreamReader (System.in)); // Bufer de entrada
         String entrada;
         
         try {
-            archivo = new FileWriter("C:\\ArchivosTXT/artistas.txt"); // Escribir la ubicacion del archivo de texto
+            archivo = new FileWriter("C:\\Users\\pamel\\OneDrive\\Documentos\\Songs.txt"); // Escribir la ubicacion del archivo de texto
             pw = new PrintWriter ( archivo ); //Decirle a PrintWriter que se trabajara con el archivo mencionado arriba
             
             System.out.println("Escribe el nombre del artista: ");
@@ -43,19 +83,16 @@ public class Archivos {
             }
         }
     }
-        
-     public static void main(String[] args) {
-        escribirArchivo();
-        leerArchivo();
-    }
-      
+     
     
-    /*
+        
+    
     public static void main(String[] args) throws IOException {
         BufferedReader buferTeclado = new BufferedReader(new InputStreamReader(System.in));
         String entrada;
         String fileName;
         int opcion;
+ 
         
         System.out.println("Programa que manupula archivos de texto");
         System.out.println("");
