@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+
 /**
  *
  * @author Noena
@@ -56,7 +57,7 @@ public class Archivos {
     }
     
    
-    public static void escribirArchivo(String name){
+    public static void escribirArchivo(){
        FileWriter archivo = null; // Especificando que trabajaremos con un archivo
         PrintWriter pw = null; // Se especifica que se trabaja con la clase PrintWriter
         BufferedReader bf = new BufferedReader(new InputStreamReader (System.in)); // Bufer de entrada
@@ -85,9 +86,9 @@ public class Archivos {
     }
      
     
-        
-    
+     
     public static void main(String[] args) throws IOException {
+       
         BufferedReader buferTeclado = new BufferedReader(new InputStreamReader(System.in));
         String entrada;
         String fileName;
@@ -100,6 +101,10 @@ public class Archivos {
         System.out.println("");
         System.out.println("1 -Leer un archivo de texto existente");
         System.out.println("2 -Crear un archivo de texto");
+        
+        escribirArchivo();
+        leerArchivo();
+        
         System.out.println("¿Que quieres hacer?");
         entrada = buferTeclado.readLine();
         opcion = Integer.parseInt(entrada);
@@ -111,16 +116,18 @@ public class Archivos {
                 //Lectura de un archivo de texto
                 System.out.println("Lectura de un archivo existente");
                 System.out.println("Contenido del archivo: ");
-                leerArchivo(entrada);
+                leerArchivo();
             }
             break;
             case 2: {
                 System.out.println("Creacion de un archivo de texto");
-                escribirArchivo(fileName);
+                escribirArchivo();
             }
             break;
             default: System.out.println("Opcion no valida");
         }
+        
+       
         
      
         
